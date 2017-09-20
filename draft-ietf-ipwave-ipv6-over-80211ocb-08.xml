@@ -28,7 +28,7 @@
       (IPv6-over-80211-OCB)
     </title>
 
-    <author initials='A.' surname="Petrescu" fullname='Alexandre Petrescu'>
+    <author initials='A.' surname="Petrescu" fullname='Alexandre Petrescu '>
       <organization>CEA, LIST</organization>
       <address>
         <postal>
@@ -106,7 +106,7 @@
     <!--   </address> -->
     <!-- </author>     -->
 
-    <author initials="J." surname="Härri" fullname="Jérôme Härri">
+    <author initials="J." surname="HÃ¤rri" fullname="JÃ©rÃ´me HÃ¤rri">
       <organization>Eurecom</organization>
       <address>
         <postal>
@@ -1263,11 +1263,11 @@ or
         links).
       </t>
       <t>
-        Tim Leinmüller contributed the idea of the use of IPv6 over
+        Tim LeinmÃ¼ller contributed the idea of the use of IPv6 over
         802.11-OCB for distribution of certificates.
       </t>
       <t>
-        Marios Makassikis, José Santa Lozano, Albin Severinson and
+        Marios Makassikis, JosÃ© Santa Lozano, Albin Severinson and
         Alexey Voronov provided significant feedback on the experience
         of using IP messages over 802.11-OCB in initial trials.
       </t>
@@ -1288,7 +1288,7 @@ or
         Jan de Jongh, Suresh Krishnan, Dino Farinacci, Vincent Park,
         Jaehoon Paul Jeong, Gloria Gwynne, Hans-Joachim Fischer, Russ
         Housley, Rex Buddenberg, Erik Nordmark, Bob Moskowitz, Andrew
-        (Dryden?), Georg Mayer, Dorothy Stanley, Sandra Céspedes,
+        (Dryden?), Georg Mayer, Dorothy Stanley, Sandra CÃ©spedes,
         Mariano Falcitelli, Sri Gundavelli and William Whyte.  Their
         valuable comments clarified particular issues and generally
         helped to improve the document.
