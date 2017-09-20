@@ -485,7 +485,7 @@
       <t>
 	RSU (Road-Side Unit): an RSU operates in 802.11-OCB mode.  A
 	RSU broadcasts data to OBUs or exchanges data with OBUs in its
-	communications zone.  An RSU may provides channel assignments
+	communications zone.  An RSU may provide channel assignments
 	and operating instructions to OBUs in its communications zone,
 	when required.  The basic functional blocks of an RSU are:
 	internal computer processing, permanent storage capability, an
@@ -778,7 +778,7 @@
           The default MTU for IP packets on 802.11-OCB is 1500 octets.
           It is the same value as IPv6 packets on Ethernet links, as
           specified in <xref target="RFC2464"/>.  This value of the
-          MTU respects the recommendation that every link in the
+          MTU respects the recommendation that every link on the
           Internet must have a minimum MTU of 1280 octets (stated in
           <xref target="RFC8200"/>, and the recommendations therein,
           especially with respect to fragmentation).  If IPv6 packets
@@ -1127,7 +1127,7 @@ or
           procedure.
         </t>
         <t>
-          The bits in the the interface identifier have no generic
+          The bits in the interface identifier have no generic
           meaning and the identifier should be treated as an opaque
           value.  The bits 'Universal' and 'Group' in the identifier
           of an 802.11-OCB interface are significant, as this is an
