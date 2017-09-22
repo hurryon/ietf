@@ -1331,9 +1331,9 @@ or
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3753"
       ?>
-      <?rfc
-        include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3963"
-      ?>
+      <!-- <?rfc -->
+      <!--   include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3963" -->
+      <!-- ?> -->
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3971"
       ?>
@@ -1355,9 +1355,9 @@ or
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4861"
       ?>
-      <?rfc
-        include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4429"
-      ?>
+      <!-- <?rfc -->
+      <!--   include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4429" -->
+      <!-- ?> -->
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5374"
       ?>
@@ -1370,9 +1370,9 @@ or
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6275"
       ?>
-      <?rfc
-        include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6775"
-      ?>
+      <!-- <?rfc -->
+      <!--   include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6775" -->
+      <!-- ?> -->
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7136"
       ?>
@@ -1609,11 +1609,16 @@ or
         From draft-ietf-ipwave-ipv6-over-80211ocb-08 to
         draft-ietf-ipwave-ipv6-over-80211ocb-09
         <list style='symbols'>
-      <t>
-        Corrected typographical errors.
-      </t>
+	  <t>
+	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
+	    about ND, MIP/NEMO and oDAD; they were referred in the
+	    handover discussion section, which is out.
+	  </t>
+	  <t>
+            Corrected typographical errors.
+	  </t>
         </list>
-     </t> 
+      </t> 
       <t>
         From draft-ietf-ipwave-ipv6-over-80211ocb-07 to
         draft-ietf-ipwave-ipv6-over-80211ocb-08
