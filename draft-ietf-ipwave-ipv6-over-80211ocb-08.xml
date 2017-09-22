@@ -106,7 +106,7 @@
     <!--   </address> -->
     <!-- </author>     -->
 
-    <author initials="J." surname="Härri" fullname="Jérôme Härri">
+    <author initials="J." surname="Haerri" fullname="Jerome Haerri">
       <organization>Eurecom</organization>
       <address>
         <postal>
@@ -1612,7 +1612,7 @@ or
 	  <t>
 	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
 	    about ND, MIP/NEMO and oDAD; they were referred in the
-	    handover discussion section, which is out.
+	    handover discussion section, which is out. <!---->
 	  </t>
 	  <t>
             Corrected typographical errors.
