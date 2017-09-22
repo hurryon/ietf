@@ -11,7 +11,7 @@
 <?rfc iprnotified="no" ?>
 
 <rfc category="std"
-     docName="draft-ietf-ipwave-ipv6-over-80211ocb-08.txt"
+     docName="draft-ietf-ipwave-ipv6-over-80211ocb-09.txt"
      ipr="trust200902">
 
   <!-- category values: std, bcp, info, exp, and historic ipr values:
@@ -1605,6 +1605,15 @@ or
         The changes are listed in reverse chronological order, most
         recent changes appearing at the top of the list.
       </t>
+      <t>
+        From draft-ietf-ipwave-ipv6-over-80211ocb-08 to
+        draft-ietf-ipwave-ipv6-over-80211ocb-09
+        <list style='symbols'>
+      <t>
+        Corrected typographical errors.
+      </t>
+        </list>
+     </t> 
       <t>
         From draft-ietf-ipwave-ipv6-over-80211ocb-07 to
         draft-ietf-ipwave-ipv6-over-80211ocb-08
