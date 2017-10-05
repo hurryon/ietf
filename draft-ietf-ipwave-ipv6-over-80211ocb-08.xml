@@ -131,19 +131,19 @@
       </address>
     </author>
 
-   <author fullname="Christian Huitema" initials="C." surname="Huitema">
-      <organization>Private Octopus Inc.</organization>
-      <address>
-        <postal>
-          <street> </street>
-          <city>Friday Harbor</city>
-          <code>98250</code>
-          <region>WA</region>
-          <country>U.S.A.</country>
-        </postal>
-        <email>huitema@huitema.net</email>
-      </address>
-    </author>
+   <!-- <author fullname="Christian Huitema" initials="C." surname="Huitema"> -->
+   <!--    <organization>Private Octopus Inc.</organization> -->
+   <!--    <address> -->
+   <!--      <postal> -->
+   <!--        <street> </street> -->
+   <!--        <city>Friday Harbor</city> -->
+   <!--        <code>98250</code> -->
+   <!--        <region>WA</region> -->
+   <!--        <country>U.S.A.</country> -->
+   <!--      </postal> -->
+   <!--      <email>huitema@huitema.net</email> -->
+   <!--    </address> -->
+   <!--  </author> -->
 
     <!-- <author fullname="Christian Huitema" initials="C." surname="Huitema"> -->
     <!--   <organization>Microsoft</organization> -->
@@ -208,32 +208,33 @@
       </address>
     </author>
 
-    <author initials="T." surname="Li" fullname="Tony Li">
-      <organization>Peloton Technology</organization>
-      <address>
-        <postal>
-          <street>
-            1060 La Avenida St.
-          </street>
-          <city>Mountain View</city>
-          <region>
-            California
-          </region>
-          <code>
-            94043
-          </code>
-          <country>
-            United States
-          </country>
-        </postal>
-        <phone>
-          +16503957356
-        </phone>
-        <email>
-          tony.li@tony.li
-        </email>
-      </address>
-    </author>        
+    <!-- <author initials="T." surname="Li" fullname="Tony Li"> -->
+    <!--   <organization>Peloton Technology</organization> -->
+    <!--   <address> -->
+    <!--     <postal> -->
+    <!--       <street> -->
+    <!--         1060 La Avenida St. -->
+    <!--       </street> -->
+    <!--       <city>Mountain View</city> -->
+    <!--       <region> -->
+    <!--         California -->
+    <!--       </region> -->
+    <!--       <code> -->
+    <!--         94043 -->
+    <!--       </code> -->
+    <!--       <country> -->
+    <!--         United States -->
+    <!--       </country> -->
+    <!--     </postal> -->
+    <!--     <phone> -->
+    <!--       +16503957356 -->
+    <!--     </phone> -->
+    <!--     <email> -->
+    <!--       tony.li@tony.li -->
+    <!--     </email> -->
+    <!--   </address> -->
+    <!-- </author>         -->
+
     <date/>
 
     <!-- Meta-data Declarations -->
@@ -1189,8 +1190,6 @@ or
       </section>
     </section>
 
-    <!-- Possibly a 'Contributors' section ... -->
-
     <section anchor="Security" title="Security Considerations">
       <t>
         Any security mechanism at the IP layer or above that may be
@@ -1257,6 +1256,9 @@ or
 
     <section anchor="Contributors"
              title="Contributors">
+      <t>
+	Christian Huitema, Tony Li.
+      </t>
       <t>
         Romain Kuntz contributed extensively about IPv6 handovers
         between links running outside the context of a BSS (802.11-OCB
