@@ -131,19 +131,19 @@
       </address>
     </author>
 
-   <!-- <author fullname="Christian Huitema" initials="C." surname="Huitema"> -->
-   <!--    <organization>Private Octopus Inc.</organization> -->
-   <!--    <address> -->
-   <!--      <postal> -->
-   <!--        <street> </street> -->
-   <!--        <city>Friday Harbor</city> -->
-   <!--        <code>98250</code> -->
-   <!--        <region>WA</region> -->
-   <!--        <country>U.S.A.</country> -->
-   <!--      </postal> -->
-   <!--      <email>huitema@huitema.net</email> -->
-   <!--    </address> -->
-   <!--  </author> -->
+    <!-- <author fullname="Christian Huitema" initials="C." surname="Huitema"> -->
+    <!--    <organization>Private Octopus Inc.</organization> -->
+    <!--    <address> -->
+    <!--      <postal> -->
+    <!--        <street> </street> -->
+    <!--        <city>Friday Harbor</city> -->
+    <!--        <code>98250</code> -->
+    <!--        <region>WA</region> -->
+    <!--        <country>U.S.A.</country> -->
+    <!--      </postal> -->
+    <!--      <email>huitema@huitema.net</email> -->
+    <!--    </address> -->
+    <!--  </author> -->
 
     <!-- <author fullname="Christian Huitema" initials="C." surname="Huitema"> -->
     <!--   <organization>Microsoft</organization> -->
@@ -270,13 +270,6 @@
         known 802.11 and Ethernet layers - by using an Ethernet
         Adaptation Layer.
       </t>
-      <t>
-        In addition, the document lists what is different in
-        802.11-OCB (802.11p) links compared to more 'traditional'
-        802.11a/b/g/n links, where IPv6 protocols operate without
-        issues.  Most notably, the operation outside the context of a
-        BSS (OCB) impacts IPv6 handover behaviour and IPv6 security.
-      </t>
     </abstract>
   </front>
 
@@ -284,169 +277,51 @@
     <section title="Introduction">
       <t>
         This document describes the transmission of IPv6 packets on
-        IEEE Std 802.11-OCB networks (a.k.a 802.11p) <xref
-        target="IEEE-802.11-2016"/>.  This involves the layering of
-        IPv6 networking on top of the IEEE 802.11 MAC layer (with an
-        LLC layer).  Compared to running IPv6 over the Ethernet MAC
-        layer, there is no modification expected to IEEE Std 802.11
-        MAC and Logical Link sublayers: IPv6 works fine directly over
-        802.11-OCB too (with an LLC layer).
+        IEEE Std 802.11-OCB networks <xref target="IEEE-802.11-2016"/>
+        (a.k.a "802.11p" see <xref target='i802.11p'/>).  This
+        involves the layering of IPv6 networking on top of the IEEE
+        802.11 MAC layer, with an LLC layer.  Compared to running IPv6
+        over the Ethernet MAC layer, there is no modification expected
+        to IEEE Std 802.11 MAC and Logical Link sublayers: IPv6 works
+        fine directly over 802.11-OCB too, with an LLC layer.
       </t>
 
       <t>
-        The term "802.11p" is an earlier definition.  The behaviour of
-        "802.11p" networks is rolled in the document IEEE Std
-        802.11-2016.  In that document the term 802.11p disappears.
-        Instead, each 802.11p feature is conditioned by the Management
-        Information Base (MIB) attribute "OCBActivated".  Whenever
-        OCBActivated is set to true the IEEE Std 802.11 OCB state is
-        activated.  For example, an 802.11 STAtion operating outside
-        the context of a basic service set has the OCBActivated flag
-        set.  Such a station, when it has the flag set, uses a BSS
-        identifier equal to ff:ff:ff:ff:ff:ff.
-      </t>
-
-      <t>
-        The IPv6 network layer operates on 802.11-OCB in the same
-        manner as it operates on 802.11 WiFi, with a few particular
-        exceptions.  The IPv6 network layer operates on WiFi by
-        involving an Ethernet Adaptation Layer; this Ethernet
-        Adaptation Layer maps 802.11 headers to Ethernet II headers.
-        The operation of IP on Ethernet is described in <xref
-        target='RFC1042'/>, <xref target='RFC2464'/> and <xref
-        target='I-D.hinden-6man-rfc2464bis'/>.  The situation of IPv6
-        networking layer on Ethernet Adaptation Layer is illustrated
-        below:
-      </t>
-      <t> 
-        <figure align="center">
-          <artwork align="center">
-            <![CDATA[
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                 IPv6                  |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |       Ethernet Adaptation Layer       |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |             802.11 WiFi MAC           |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |             802.11 WiFi PHY           |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-            ]]>
-          </artwork>
-        </figure>
-      </t>
-
-      <t>
-	(in the above figure, a WiFi profile is represented; this is
-	used also for OCB profile.)
-      </t>
-
-      <t>
-        A more theoretical and detailed view of layer stacking, and
-        interfaces between the IP layer and 802.11-OCB layers, is
-        illustrated below.  The IP layer operates on top of the
-        EtherType Protocol Discrimination (EPD); this Discrimination
-        layer is described in IEEE Std 802.3-2012; the interface
-        between IPv6 and EPD is the LLC_SAP (Link Layer Control
-        Service Access Point).
-      </t>
-
-      <t> 
-        <figure align="center">
-          <artwork align="center">
-            <![CDATA[
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                 IPv6                  |
- +-+-+-+-+-+-{            }+-+-+-+-+-+-+-+
-             {   LLC_SAP  }                 802.11-OCB
- +-+-+-+-+-+-{            }+-+-+-+-+-+-+-+  Boundary
- |            EPD          |       |     |
- |                         | MLME  |     |
- +-+-+-{  MAC_SAP   }+-+-+-|  MLME_SAP   |
- |      MAC Sublayer       |       |     |  802.11-OCB
- |     and ch. coord.      |       | SME |  Services
- +-+-+-{   PHY_SAP  }+-+-+-+-+-+-+-|     |
- |                         | PLME  |     |
- |            PHY Layer    |   PLME_SAP  |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-            ]]>
-          </artwork>
-        </figure>
-      </t>
-
-      <t>
-	In addition to the description of interface between IP and MAC
-	using "Ethernet Adaptation Layer" and "Ethernet Protocol
-	Discrimination (EPD)" it is worth mentioning that SNAP <xref
-	target='RFC1042'/> is used to carry the IPv6 Ethertype.
-      </t>
-
-      <t>
-        However, there may be some deployment considerations helping
-        optimize the performances of running IPv6 over 802.11-OCB
-        (e.g. in the case of handovers between 802.11-OCB-enabled
-        access routers, or the consideration of using the IP security
-        architecture <xref target='RFC4301'/>).
-      </t>
-
-      <t>
-	There are currently no specifications for handover between OCB
-	links since these are currently specified as LLC-1 links (i.e.
-	connectionless).  Any handovers must be performed above the
-	Data Link Layer.  To realize handovers between OCB links there
-	is a need for specific indicators to assist in the handover
-	process.  The indicators may be IP Router Advertisements, or
-	802.11-OCB's Time Advertisements, or application-layer data.
-	However, this document does not describe handover behaviour.
-      </t>
-
-      <t>
-	The OCB operation is stripped off of all existing 802.11
-	link-layer security mechanisms.  There is no encryption
-	applied below the network layer running on 802.11-OCB.  At
-	application layer, the IEEE 1609.2 document <xref
-	target="IEEE-1609.2"/> does provide security services for
-	certain applications to use; application-layer mechanisms are
-	out-of-scope of this document.  On another hand, a security
-	mechanism provided at networking layer, such as IPsec <xref
-	target="RFC4301"/>, may provide data security protection to a
-	wider range of applications.  See the section Security
-	Considerations of this document, <xref target="Security"/>
-      </t>
-
-      <t>
-        We briefly introduce the vehicular communication scenarios
-        where IEEE 802.11-OCB links are used.  This is followed by a
-        description of differences in specification terms, between
-        802.11-OCB and 802.11a/b/g/n - we answer the question of what
-        are the aspects introduced by OCB mode to 802.11; the same
-        aspects, but expressed in terms of requirements to
-        implementation, are listed in <xref
-        target="software-changes"/>.)
-      </t>
-
-      <t>
-        The document then concentrates on the parameters of layering
-        IP over 802.11-OCB as over Ethernet: value of MTU, the Frame
-        Format which includes a description of an Ethernet Adaptation
-        Layer, the forming of Link-Local Addresses the rules for
-        forming Interface Identifiers for Stateless Autoconfiguration,
-        the mechanisms for Address Mapping.  These are precisely the
-        same as IPv6 over Ethernet <xref target="RFC2464"/>.  A
-        reference is made to ad-hoc networking characteristics of the
-        subnet structure in OCB mode.
+	The IPv6 network layer operates on 802.11-OCB in the same
+	manner as operating on Ethernet, but there are two kinds of
+	exceptions:
       </t>
       <t>
-        As an example, these characteristics of layering IPv6 straight
-        over LLC over 802.11-OCB MAC are illustrated by dissecting an
-        IPv6 packet captured over a 802.11-OCB link; this is described
-        in the section <xref target="impl-status"/>.
+        <list style='symbols'>
+	  <t>
+	    Exceptions due to different operation of IPv6 network
+	    layer on 802.11 than on Ethernet.  To satisfy these
+	    exceptions, this document describes an Ethernet Adaptation
+	    Layer between Ethernet headers and 802.11 headers.  The
+	    Ethernet Adaptation Layer is described <xref
+	    target='aal'/>.  The operation of IP on Ethernet is
+	    described in <xref target='RFC1042'/>, <xref
+	    target='RFC2464'/> and <xref
+	    target='I-D.hinden-6man-rfc2464bis'/>.
+	  </t>
+	  <t>
+	    Exceptions due to the OCB nature of 802.11-OCB compared to
+	    802.11.  This has impacts on security, privacy, subnet
+	    structure and handover behaviour.  For security and
+	    privacy recommendations see <xref target='Security'/> and
+	    <xref target='slaac'/>.  The subnet structure is described
+	    in <xref target='subnet-structure'/>; a new Group ID is
+	    requested to be used in such subnets, see section <xref
+	    target='IANA'/>.  The handover behaviour on OCB links is
+	    not described in this document.
+	    </t>
+	  </list>
       </t>
-      
+
       <t>
         In the published literature, many documents describe aspects
-        related to running IPv6 over 802.11-OCB: <xref
-        target='I-D.jeong-ipwave-vehicular-networking-survey'/>.
+        and problems related to running IPv6 over 802.11-OCB: <xref
+        target='I-D.ietf-ipwave-vehicular-networking-survey'/>.
       </t>        
 
     </section>
@@ -547,7 +422,7 @@
     </section>
 
     <section 
-        title="Layering of IPv6 over 802.11-OCB as over Ethernet">
+        title="IPv6 over 802.11-OCB">
       <t>
       </t>
       <section title="Maximum Transmission Unit (MTU)"
@@ -614,17 +489,10 @@
         <section title='Ethernet Adaptation Layer'
                  anchor='aal'>
           <t>
-            In general, an 'adaptation' layer is inserted between a
-            MAC layer and the Networking layer.  This is used to
-            transform some parameters between their form expected by
-            the IP stack and the form provided by the MAC layer.
-            For example, an 802.15.4 adaptation layer may perform
-            fragmentation and reassembly operations on a MAC whose
-            maximum Packet Data Unit size is smaller than the
-            minimum MTU recognized by the IPv6 Networking layer.
-            Other examples involve link-layer address
-            transformation, packet header insertion/removal, and so
-            on.
+            An 'adaptation' layer is inserted between a MAC layer and
+            the Networking layer.  This is used to transform some
+            parameters between their form expected by the IP stack and
+            the form provided by the MAC layer.
           </t>
           <t>
             An Ethernet Adaptation Layer makes an 802.11 MAC look
@@ -641,13 +509,14 @@
  +--------------------+------------+-------------+---------+-----------+
  | 802.11 Data Header | LLC Header | IPv6 Header | Payload |.11 Trailer|
  +--------------------+------------+-------------+---------+-----------+
-  \                               /                         \         /
-    -----------------------------                             --------
-                   ^---------------------------------------------/
-                   |
-           802.11-to-Ethernet Adaptation Layer
-                   |
-                   v
+ \                               /                         \         /
+   -----------------------------                             --------
+                \---------------------------------------------/
+                           ^
+                           |
+              802.11-to-Ethernet Adaptation Layer
+                           |
+                           v
  +---------------------+-------------+---------+
  | Ethernet II Header  | IPv6 Header | Payload |
  +---------------------+-------------+---------+
@@ -656,29 +525,27 @@
             </figure>
           </t>
           <t>
-            The Receiver and Transmitter Address fields in the
-            802.11 Data Header contain the same values as the
-            Destination and the Source Address fields in the
-            Ethernet II Header, respectively.  The value of the Type
-            field in the LLC Header is the same as the value of the
-            Type field in the Ethernet II Header.
+            The Receiver and Transmitter Address fields in the 802.11
+            Data Header contain the same values as the Destination and
+            the Source Address fields in the Ethernet II Header,
+            respectively.  The value of the Type field in the LLC
+            Header is the same as the value of the Type field in the
+            Ethernet II Header.
           </t>
 	  <t>
 	    The ".11 Trailer" contains solely a 4-byte Frame Check
 	    Sequence.
 	  </t>
           <t>
-	    The Ethernet Adaptation Layer performs operations in
-	    relation to IP fragmentation and MTU.  One of these
-	    operations is briefly described in section <xref
+	    Additionally, the Ethernet Adaptation Layer performs
+	    operations in relation to IP fragmentation and MTU.  One
+	    of these operations is briefly described in section <xref
 	    target="MTU"/>.
           </t>
           <t>
-            In OCB mode, IPv6 packets can be transmitted either as
+            In OCB mode, IPv6 packets MAY be transmitted either as
             "IEEE 802.11 Data" or alternatively as "IEEE 802.11 QoS
-            Data", as illustrated in the figure below.  Some
-            commercial OCB products use 802.11 Data, and others 802.11
-            QoS data.  In the future, both could be used.
+            Data", as illustrated in the figure below.  
           </t>
           <t> 
             <figure align="center">
@@ -713,6 +580,38 @@ or
             target='I-D.ietf-tsvwg-ieee-802-11'/>, although it is not
             specific to OCB mode.
           </t>
+	  <t>
+	    The placement of IPv6 networking layer on Ethernet Adaptation
+	    Layer is illustrated below:
+	  </t>
+	  <t> 
+            <figure align="center">
+              <artwork align="center">
+		<![CDATA[
+	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 |                 IPv6                  |
+	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 |       Ethernet Adaptation Layer       |
+	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 |             802.11 WiFi MAC           |
+	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 |             802.11 WiFi PHY           |
+	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+		]]>
+              </artwork>
+            </figure>
+	  </t>
+
+	  <t>
+	    (in the above figure, a WiFi profile is represented; this is
+	    used also for OCB profile.)
+	  </t>
+
+	  <t>
+	    Other alternative views of layering are EtherType Protocol
+	    Discrimination (EPD), see <xref target='epd'/>, and SNAP
+	    see <xref target='RFC1042'/>.
+	  </t>
 
         </section>
       </section>
@@ -736,100 +635,18 @@ or
           For unicast as for multicast, there is no change from the
           unicast and multicast address mapping format of Ethernet
           interfaces, as defined by sections 6 and 7 of <xref
-          target='RFC2464'/>.  
+          target='RFC2464'/>.
         </t>
 
         <section title='Address Mapping -- Unicast'>
 	  <t>
 	    The procedure for mapping IPv6 unicast addresses into
 	    Ethernet link-layer addresses is described in <xref
-	    target="RFC4861"/>.  The Source/Target Link-layer Address
-	    option has the following form when the link-layer is
-	    Ethernet.
-	  </t>
-	  <t> 
-            <figure align="center">
-              <artwork align="center">
-		<![CDATA[
- 0                   1
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |                               |
- +-          Ethernet           -+
- |                               |
- +-           Address           -+
- |                               |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                ]]>
-              </artwork>
-            </figure>
-          </t>
-
-	  <t>
-	    Option fields:
-	  </t>
-	  
-	  <t>
-	    <list style="hanging">
-	      <t hangText="Type">
-		<vspace/>
-		1 for Source Link-layer address.
-		<vspace/>
-		2 for Target Link-layer address.
-	      </t>
-	      <t hangText="Length">
-		<vspace/> 
-		1 (in units of 8 octets).
-	      </t>
-	      <t hangText="Ethernet Address">
-		<vspace/>
-		The 48 bit Ethernet IEEE 802 address, in canonical bit
-		order.
-	      </t>
-	    </list>
+	    target="RFC4861"/>.
 	  </t>
         </section>
 
         <section title="Address Mapping -- Multicast">
-          <t>
-            IPv6 protocols often make use of IPv6 multicast addresses in
-            the destination field of IPv6 headers.  For example, an ICMPv6
-            link-scoped Neighbor Advertisement is sent to the IPv6 address
-            ff02::1 denoted "all-nodes" address.  When transmitting these
-            packets on 802.11-OCB links it is necessary to map the IPv6
-            address to a MAC address.
-          </t>
-          <t>
-            The same mapping requirement applies to the link-scoped
-            multicast addresses of other IPv6 protocols as well.  In
-            DHCPv6, the "All_DHCP_Servers" IPv6 multicast address
-            ff02::1:2, and in OSPF the "All_SPF_Routers" IPv6 multicast
-            address ff02::5, need to be mapped on a multicast MAC address.
-          </t>
-          <t>
-            An IPv6 packet with a multicast destination address DST,
-            consisting of the sixteen octets DST[1] through DST[16], is
-            transmitted to the IEEE 802.11-OCB MAC multicast address whose
-            first two octets are the value 0x3333 and whose last four
-            octets are the last four octets of DST.
-          </t>
-          <t> 
-            <figure align="center">
-              <artwork align="center">
-                <![CDATA[
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |0 0 1 1 0 0 1 1|0 0 1 1 0 0 1 1|
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |   DST[13]     |   DST[14]     |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |   DST[15]     |   DST[16]     |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                ]]>
-              </artwork>
-            </figure>
-          </t>
           <t>          
             A Group ID named TBD, of length 112bits is requested to
             IANA; this Group ID signifies "All 80211OCB Interfaces
@@ -847,14 +664,15 @@ or
         </section>
 
       </section>
-      <section title='Stateless Autoconfiguration'>
+      <section title='Stateless Autoconfiguration'
+	       anchor='slaac'>
         <t>
           The Interface Identifier for an 802.11-OCB interface is
           formed using the same rules as the Interface Identifier for
           an Ethernet interface; this is described in section 4 of
           <xref target='RFC2464'/>.  No changes are needed, but some
-          care must be taken when considering the use of the SLAAC
-          procedure.
+          care must be taken when considering the use of the Stateless
+          Address Auto-Configuration procedure.
         </t>
         <t>
           The bits in the interface identifier have no generic
@@ -920,6 +738,18 @@ or
         Any security mechanism at the IP layer or above that may be
         carried out for the general case of IPv6 may also be carried
         out for IPv6 operating over 802.11-OCB.
+      </t>
+      <t>
+	The OCB operation is stripped off of all existing 802.11
+	link-layer security mechanisms.  There is no encryption
+	applied below the network layer running on 802.11-OCB.  At
+	application layer, the IEEE 1609.2 document <xref
+	target="IEEE-1609.2"/> does provide security services for
+	certain applications to use; application-layer mechanisms are
+	out-of-scope of this document.  On another hand, a security
+	mechanism provided at networking layer, such as IPsec <xref
+	target="RFC4301"/>, may provide data security protection to a
+	wider range of applications.
       </t>
       <t>
         802.11-OCB does not provide any cryptographic protection,
@@ -1311,7 +1141,7 @@ or
       <!-- </reference> -->
       
       <?rfc
-        include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.jeong-ipwave-vehicular-networking-survey"
+        include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-ipwave-vehicular-networking-survey"
       ?>
       
       <?rfc
@@ -1338,6 +1168,16 @@ or
         draft-ietf-ipwave-ipv6-over-80211ocb-09
         <list style='symbols'>
 	  <t>
+	    Significantly shortened the Address Mapping sections, by
+	    text copied from RFC2464, and rather referring to it.
+	  </t>
+	  <t>
+	    Moved the EPD description to an Appendix on its own.
+	  </t>
+	  <t>
+	    Shortened the Introduction and the Abstract.
+	  </t>
+	  <t>
 	    Moved the tutorial section of OCB mode introduced to .11,
 	    into an appendix.
 	  </t>
@@ -1349,6 +1189,10 @@ or
 	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
 	    about ND, MIP/NEMO and oDAD; they were referred in the
 	    handover discussion section, which is out.
+	  </t>
+	  <t>
+	    Updated a reference from individual submission to now a WG
+	    item in IPWAVE: the survey document.
 	  </t>
 	  <t>
 	    Added term definition for WiFi.
@@ -1656,6 +1500,21 @@ or
       </t>
     </section>
 
+    <section title= "802.11p" anchor='i802.11p'>
+      <t>
+        The term "802.11p" is an earlier definition.  The behaviour of
+        "802.11p" networks is rolled in the document IEEE Std
+        802.11-2016.  In that document the term 802.11p disappears.
+        Instead, each 802.11p feature is conditioned by the Management
+        Information Base (MIB) attribute "OCBActivated".  Whenever
+        OCBActivated is set to true the IEEE Std 802.11 OCB state is
+        activated.  For example, an 802.11 STAtion operating outside
+        the context of a basic service set has the OCBActivated flag
+        set.  Such a station, when it has the flag set, uses a BSS
+        identifier equal to ff:ff:ff:ff:ff:ff.
+      </t>
+    </section>
+
     <section title="Aspects introduced by the OCB mode to 802.11">
       <t>
         In the IEEE 802.11-OCB mode, all nodes in the wireless range
@@ -1702,21 +1561,21 @@ or
         <figure align="center">
           <artwork align="center">
             <![CDATA[
-		     STA                    AP              STA1                   STA2
-		     |                      |               |                      |
-		     |<------ Beacon -------|               |<------ Data -------->|
-		     |                      |               |                      |
-		     |---- Probe Req. ----->|               |<------ Data -------->|
-		     |<--- Probe Res. ------|               |                      |
-		     |                      |               |<------ Data -------->|
-		     |---- Auth Req. ------>|               |                      |
-		     |<--- Auth Res. -------|               |<------ Data -------->|
-		     |                      |               |                      |
-		     |---- Asso Req. ------>|               |<------ Data -------->|
-		     |<--- Asso Res. -------|               |                      |
-		     |                      |               |<------ Data -------->|
-		     |<------ Data -------->|               |                      |
-		     |<------ Data -------->|               |<------ Data -------->|
+     STA                    AP              STA1                   STA2
+     |                      |               |                      |
+     |<------ Beacon -------|               |<------ Data -------->|
+     |                      |               |                      |
+     |---- Probe Req. ----->|               |<------ Data -------->|
+     |<--- Probe Res. ------|               |                      |
+     |                      |               |<------ Data -------->|
+     |---- Auth Req. ------>|               |                      |
+     |<--- Auth Res. -------|               |<------ Data -------->|
+     |                      |               |                      |
+     |---- Asso Req. ------>|               |<------ Data -------->|
+     |<--- Asso Res. -------|               |                      |
+     |                      |               |<------ Data -------->|
+     |<------ Data -------->|               |                      |
+     |<------ Data -------->|               |<------ Data -------->|
 
 (a) 802.11 Infrastructure mode         (b) 802.11-OCB mode
             ]]>
@@ -1980,6 +1839,42 @@ or
           </t>
         </list>
       </t>
+    </section>
+    <section title='EPD'
+	     anchor='epd'>
+      <t>
+        A more theoretical and detailed view of layer stacking, and
+        interfaces between the IP layer and 802.11-OCB layers, is
+        illustrated below.  The IP layer operates on top of the
+        EtherType Protocol Discrimination (EPD); this Discrimination
+        layer is described in IEEE Std 802.3-2012; the interface
+        between IPv6 and EPD is the LLC_SAP (Link Layer Control
+        Service Access Point).
+      </t>
+
+      <t> 
+        <figure align="center">
+          <artwork align="center">
+            <![CDATA[
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |                 IPv6                  |
+ +-+-+-+-+-+-{            }+-+-+-+-+-+-+-+
+             {   LLC_SAP  }                 802.11-OCB
+ +-+-+-+-+-+-{            }+-+-+-+-+-+-+-+  Boundary
+ |            EPD          |       |     |
+ |                         | MLME  |     |
+ +-+-+-{  MAC_SAP   }+-+-+-|  MLME_SAP   |
+ |      MAC Sublayer       |       |     |  802.11-OCB
+ |     and ch. coord.      |       | SME |  Services
+ +-+-+-{   PHY_SAP  }+-+-+-+-+-+-+-|     |
+ |                         | PLME  |     |
+ |            PHY Layer    |   PLME_SAP  |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            ]]>
+          </artwork>
+        </figure>
+      </t>
+
     </section>
     <section title="Design Considerations"
 	     anchor="design-considerations">
