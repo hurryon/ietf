@@ -460,6 +460,10 @@
       </t>
 
       <t>
+	WiFi: Wireless Fidelity.
+      </t>
+
+      <t>
 	OBRU (On-Board Router Unit): an OBRU is almost always situated
 	in a vehicle; it is a computer with at least two IP
 	interfaces; at least one IP interface runs in OCB mode of
@@ -1242,10 +1246,11 @@ or
         Jan de Jongh, Suresh Krishnan, Dino Farinacci, Vincent Park,
         Jaehoon Paul Jeong, Gloria Gwynne, Hans-Joachim Fischer, Russ
         Housley, Rex Buddenberg, Erik Nordmark, Bob Moskowitz, Andrew
-        (Dryden?), Georg Mayer, Dorothy Stanley, Sandra Céspedes,
-        Mariano Falcitelli, Sri Gundavelli and William Whyte.  Their
-        valuable comments clarified particular issues and generally
-        helped to improve the document.
+        (Dryden?), Georg Mayer, Dorothy Stanley, Sandra Cespedes,
+        Mariano Falcitelli, Sri Gundavelli, Abdussalam Baryun,
+        Margaret Cullen and William Whyte.  Their valuable comments
+        clarified particular issues and generally helped to improve
+        the document.
       </t>
       <t>
         Pierre Pfister, Rostislav Lisovy, and others, wrote 802.11-OCB
@@ -1567,6 +1572,9 @@ or
 	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
 	    about ND, MIP/NEMO and oDAD; they were referred in the
 	    handover discussion section, which is out. <!---->
+	  </t>
+	  <t>
+	    Added term definition for WiFi.
 	  </t>
 	  <t>
 	    Updated the authorship and expanded the Contributors
