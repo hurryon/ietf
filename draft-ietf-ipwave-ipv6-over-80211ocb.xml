@@ -1338,16 +1338,20 @@ or
         draft-ietf-ipwave-ipv6-over-80211ocb-09
         <list style='symbols'>
 	  <t>
-	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
-	    about ND, MIP/NEMO and oDAD; they were referred in the
-	    handover discussion section, which is out. <!---->
-	  </t>
-	  <t>
-	    Added term definition for WiFi.
+	    Moved the tutorial section of OCB mode introduced to .11,
+	    into an appendix.
 	  </t>
 	  <t>
 	    Removed the statement that suggests that for routing
 	    purposes a prefix exchange mechanism could be needed.
+	  </t>
+	  <t>
+	    Removed refs to RFC3963, RFC4429 and RFC6775; these are
+	    about ND, MIP/NEMO and oDAD; they were referred in the
+	    handover discussion section, which is out.
+	  </t>
+	  <t>
+	    Added term definition for WiFi.
 	  </t>
 	  <t>
 	    Updated the authorship and expanded the Contributors
