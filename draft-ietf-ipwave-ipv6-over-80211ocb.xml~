@@ -618,7 +618,7 @@
 	(TM) -2010 <xref target="IEEE-802.11p-2010"/> as an amendment
 	to IEEE Std 802.11 (TM) -2007, titled "Amendment 6: Wireless
 	Access in Vehicular Environments".  Since then, this amendment
-	has been included in IEEE 802.11(TM) -2012 and -2016 <xref
+	has been integrated in IEEE 802.11(TM) -2012 and -2016 <xref
 	target="IEEE-802.11-2016"/>.
       </t>
       <t>
@@ -677,7 +677,7 @@
         by 802.11-OCB.  The maximum bandwidth theoretically possible
         in 802.11-OCB is 54 Mbit/s (when using, for example, the
         following parameters: 20 MHz channel; modulation 64-QAM;
-        codint rate R is 3/4); in practice of IP-over-802.11-OCB a
+        coding rate R is 3/4); in practice of IP-over-802.11-OCB a
         commonly observed figure is 12Mbit/s; this bandwidth allows
         the operation of a wide range of protocols relying on IPv6.
       </t>
@@ -726,16 +726,16 @@
             operation of 802.11-OCB in "5.9GHz" bands is exempt from
             owning a license in EU (in US the 5.9GHz is a licensed
             band of spectrum; for the fixed infrastructure an explicit
-            FCC autorization is required; for an onboard device a
+            FCC authorization is required; for an onboard device a
             'licensed-by-rule' concept applies: rule certification
-            conformity is required); however technical conditions are
-            different than those of the bands "2.4GHz" or "5GHz".  On
-            one hand, the allowed power levels, and implicitly the
+            conformity is required). Technical conditions are
+            different than those of the bands "2.4GHz" or "5GHz".  
+	    The allowed power levels, and implicitly the
             maximum allowed distance between vehicles, is of 33dBm for
             802.11-OCB (in Europe), compared to 20 dBm for Wireless
             LAN 802.11a/b/g/n; this leads to a maximum distance of
-            approximately 1km, compared to approximately 50m.  On the
-            other hand, specific conditions related to congestion
+            approximately 1km, compared to approximately 50m.  
+	    Additionally, specific conditions related to congestion
             avoidance, jamming avoidance, and radar detection are
             imposed on the use of DSRC (in US) and on the use of
             frequencies for Intelligent Transportation Systems (in
@@ -756,7 +756,7 @@
             for dynamic change of these addresses (as opposed to the
             non-vehicular settings - real wall protection - where
             fixed MAC addresses do not currently pose some privacy
-            risks).  This is further described in section <xref
+            risks).  This is further described in <xref
             target="Security"/>.  A relevant function is described in
             IEEE 1609.3-2016 <xref target="IEEE-1609.3"/>, clause 5.5.1
             and IEEE 1609.4-2016 <xref target="IEEE-1609.4"/>, clause
@@ -768,7 +768,7 @@
         particular to 802.11 (e.g. the 'hidden node' operation), may
         have an influence on the use of transmission of IPv6 packets
         on 802.11-OCB networks.  The OCB subnet structure is described
-        in section <xref target="subnet-structure"/>.
+        in <xref target="subnet-structure"/>.
       </t>
       
     </section>
@@ -897,7 +897,7 @@
           <t>
 	    The Ethernet Adaptation Layer performs operations in
 	    relation to IP fragmentation and MTU.  One of these
-	    operations is briefly described in section <xref
+	    operations is briefly described in <xref
 	    target="MTU"/>.
           </t>
           <t>
@@ -1096,8 +1096,8 @@ or
           As with all Ethernet and 802.11 interface identifiers (<xref
           target='RFC7721'/>), the identifier of an 802.11-OCB
           interface may involve privacy, MAC address spoofing and IP
-          address hijacking risks.  A vehicle embarking an On-Board
-          Unit whose egress interface is 802.11-OCB may expose itself
+          address hijacking risks.  A vehicle embarking an OBU
+	  whose egress interface is 802.11-OCB may expose itself
           to eavesdropping and subsequent correlation of data; this
           may reveal data considered private by the vehicle owner;
           there is a risk of being tracked; see the privacy
@@ -1263,7 +1263,7 @@ or
         groups.
       </t>
       <t>
-        The authours would like to thank participants to the
+        The authors would like to thank participants to the
         Birds-of-a-Feather "Intelligent Transportation Systems"
         meetings held at IETF in 2016.
       </t>
@@ -1924,7 +1924,8 @@ or
             <list style='symbols'>
               <t>
                 The chip must use the Orthogonal Frequency Multiple
-                Access (OFDM) encoding mode.
+                Access (OFDM) en
+		mode.
               </t>
               <t>
                 The chip must be set in half-mode rate mode (the
