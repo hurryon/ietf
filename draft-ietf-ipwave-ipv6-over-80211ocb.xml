@@ -311,7 +311,7 @@
 	    privacy recommendations see <xref target='Security'/> and
 	    <xref target='slaac'/>.  The subnet structure is described
 	    in <xref target='subnet-structure'/>; a new Group ID is
-	    requested to be used in such subnets, see section <xref
+	    requested to be used in such subnets, see <xref
 	    target='IANA'/>.  The handover behaviour on OCB links is
 	    not described in this document.
 	    </t>
@@ -539,7 +539,7 @@
           <t>
 	    Additionally, the Ethernet Adaptation Layer performs
 	    operations in relation to IP fragmentation and MTU.  One
-	    of these operations is briefly described in section <xref
+	    of these operations is briefly described in <xref
 	    target="MTU"/>.
           </t>
           <t>
@@ -862,7 +862,7 @@ or
         groups.
       </t>
       <t>
-        The authours would like to thank participants to the
+        The authors would like to thank participants to the
         Birds-of-a-Feather "Intelligent Transportation Systems"
         meetings held at IETF in 2016.
       </t>
@@ -1163,6 +1163,18 @@ or
         The changes are listed in reverse chronological order, most
         recent changes appearing at the top of the list.
       </t>
+      <t>
+        From draft-ietf-ipwave-ipv6-over-80211ocb-09 to
+        draft-ietf-ipwave-ipv6-over-80211ocb-10
+        <list style='symbols'>
+	  <t>
+	    Minor typos.
+	  </t>
+	  <t>
+	    Replaced "section Section" with "section" throughout.
+	  </t>
+        </list>
+      </t> 
       <t>
         From draft-ietf-ipwave-ipv6-over-80211ocb-08 to
         draft-ietf-ipwave-ipv6-over-80211ocb-09
@@ -1587,7 +1599,7 @@ or
 	(TM) -2010 <xref target="IEEE-802.11p-2010"/> as an amendment
 	to IEEE Std 802.11 (TM) -2007, titled "Amendment 6: Wireless
 	Access in Vehicular Environments".  Since then, this amendment
-	has been included in IEEE 802.11(TM) -2012 and -2016 <xref
+	has been integrated in IEEE 802.11(TM) -2012 and -2016 <xref
 	target="IEEE-802.11-2016"/>.
       </t>
       <t>
@@ -1646,7 +1658,7 @@ or
         by 802.11-OCB.  The maximum bandwidth theoretically possible
         in 802.11-OCB is 54 Mbit/s (when using, for example, the
         following parameters: 20 MHz channel; modulation 64-QAM;
-        codint rate R is 3/4); in practice of IP-over-802.11-OCB a
+        coding rate R is 3/4); in practice of IP-over-802.11-OCB a
         commonly observed figure is 12Mbit/s; this bandwidth allows
         the operation of a wide range of protocols relying on IPv6.
       </t>
@@ -1695,16 +1707,16 @@ or
             operation of 802.11-OCB in "5.9GHz" bands is exempt from
             owning a license in EU (in US the 5.9GHz is a licensed
             band of spectrum; for the fixed infrastructure an explicit
-            FCC autorization is required; for an onboard device a
+            FCC authorization is required; for an onboard device a
             'licensed-by-rule' concept applies: rule certification
-            conformity is required); however technical conditions are
-            different than those of the bands "2.4GHz" or "5GHz".  On
-            one hand, the allowed power levels, and implicitly the
-            maximum allowed distance between vehicles, is of 33dBm for
-            802.11-OCB (in Europe), compared to 20 dBm for Wireless
-            LAN 802.11a/b/g/n; this leads to a maximum distance of
-            approximately 1km, compared to approximately 50m.  On the
-            other hand, specific conditions related to congestion
+            conformity is required.) Technical conditions are
+            different than those of the bands "2.4GHz" or "5GHz".  The
+            allowed power levels, and implicitly the maximum allowed
+            distance between vehicles, is of 33dBm for 802.11-OCB (in
+            Europe), compared to 20 dBm for Wireless LAN
+            802.11a/b/g/n; this leads to a maximum distance of
+            approximately 1km, compared to approximately 50m.
+            Additionally, specific conditions related to congestion
             avoidance, jamming avoidance, and radar detection are
             imposed on the use of DSRC (in US) and on the use of
             frequencies for Intelligent Transportation Systems (in
@@ -1725,11 +1737,11 @@ or
             for dynamic change of these addresses (as opposed to the
             non-vehicular settings - real wall protection - where
             fixed MAC addresses do not currently pose some privacy
-            risks).  This is further described in section <xref
+            risks).  This is further described in <xref
             target="Security"/>.  A relevant function is described in
-            IEEE 1609.3-2016 <xref target="IEEE-1609.3"/>, clause 5.5.1
-            and IEEE 1609.4-2016 <xref target="IEEE-1609.4"/>, clause
-            6.7.
+            IEEE 1609.3-2016 <xref target="IEEE-1609.3"/>, clause
+            5.5.1 and IEEE 1609.4-2016 <xref target="IEEE-1609.4"/>,
+            clause 6.7.
           </t>
         </list>
 
@@ -1737,7 +1749,7 @@ or
         particular to 802.11 (e.g. the 'hidden node' operation), may
         have an influence on the use of transmission of IPv6 packets
         on 802.11-OCB networks.  The OCB subnet structure is described
-        in section <xref target="subnet-structure"/>.
+        in <xref target="subnet-structure"/>.
       </t>
       
     </section>
@@ -2090,11 +2102,11 @@ or
         <figure align="center">
           <artwork align="center">
             <![CDATA[
-		     +--------+                                +-------+
-		     |        |        802.11-OCB Link         |       |
-		     ---| Router |--------------------------------| Host  |
-		     |        |                                |       |
-		     +--------+                                +-------+
+     +--------+                                +-------+
+     |        |        802.11-OCB Link         |       |
+  ---| Router |--------------------------------| Host  |
+     |        |                                |       |
+     +--------+                                +-------+
             ]]>
           </artwork>
         </figure>
