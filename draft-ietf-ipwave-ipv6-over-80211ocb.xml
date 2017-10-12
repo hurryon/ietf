@@ -299,7 +299,7 @@
 	    exceptions, this document describes an Ethernet Adaptation
 	    Layer between Ethernet headers and 802.11 headers.  The
 	    Ethernet Adaptation Layer is described <xref
-	    target='aal'/>.  The operation of IP on Ethernet is
+	    target='eal'/>.  The operation of IP on Ethernet is
 	    described in <xref target='RFC1042'/>, <xref
 	    target='RFC2464'/> and <xref
 	    target='I-D.hinden-6man-rfc2464bis'/>.
@@ -310,10 +310,8 @@
 	    structure and handover behaviour.  For security and
 	    privacy recommendations see <xref target='Security'/> and
 	    <xref target='slaac'/>.  The subnet structure is described
-	    in <xref target='subnet-structure'/>; a new Group ID is
-	    requested to be used in such subnets, see <xref
-	    target='IANA'/>.  The handover behaviour on OCB links is
-	    not described in this document.
+	    in <xref target='subnet-structure'/>.  The handover
+	    behaviour on OCB links is not described in this document.
 	    </t>
 	  </list>
       </t>
@@ -340,9 +338,12 @@
 
       <t>
 	OBRU (On-Board Router Unit): an OBRU is almost always situated
-	in a vehicle; it is a computer with at least two IP
-	interfaces; at least one IP interface runs in OCB mode of
-	802.11.  It MAY be an IP Router.
+	in a vehicle; it is a computer with at least two IP real or
+	virtual interfaces; at least one IP interface runs in OCB mode
+	of 802.11.  It MAY be an IP Router.
+      </t>
+      <t>
+	OBU (On-Board Unit): term defined outside the IETF.
       </t>
 
       <t>
@@ -356,11 +357,11 @@
         (ANR) defined in <xref target="RFC3753"/>, with one key
         particularity: the wireless PHY/MAC layer of at least one of
         its IP-enabled interfaces is configured to operate in
-        802.11-OCB mode.  The RSRU communicates with the On board Unit
-        (OBRU) in the vehicle over 802.11 wireless link operating in
-        OCB mode.  An RSRU MAY be connected to the Internet, and MAY
-        be an IP Router.  When it is connected to the Internet, the
-        term V2I (Vehicle to Internet) is relevant.
+        802.11-OCB mode.  The RSRU communicates with the OBRU in the
+        vehicle over 802.11 wireless link operating in OCB mode.  An
+        RSRU MAY be connected to the Internet, and MAY be an IP
+        Router.  When it is connected to the Internet, the term V2I
+        (Vehicle to Internet) is relevant.
       </t>
       <t>
 	RSU (Road-Side Unit): an RSU operates in 802.11-OCB mode.  A
@@ -375,7 +376,11 @@
 	IP-enabled simultaneously to being WAVE-enabled or
 	GeoNetworking-enabled (MAY support simultaneously EtherTypes
 	0x86DD for IPv6 _and_ 0x88DC for WAVE and 0x8947 for
-	GeoNetworking).
+	GeoNetworking).  The difference between RSU and RSRU is that
+	an RSU is likely to have one single OCB interface which is
+	likely not IP enabled, whereas an RSRU is likely to have one
+	or more OCB interfaces which are almost always IP-enabled;
+	moreover, an RSRU does IP forwarding, whereas an RSU does not.
       </t>
 
       <t>
@@ -389,7 +394,9 @@
         MIB attribute dot11OCBActivited is true.  The OCB mode
         requires transmission of QoS data frames (IEEE Std 802.11e),
         half-clocked operation (IEEE Std 802.11j), and use of 5.9 GHz
-        frequency band.
+        frequency band.  Nota: any implementation should comply with
+        standards and regulations set in the different countries for
+        using that frequency band.
       </t>
     </section>
 
@@ -402,8 +409,9 @@
         Environments'.  The IP communication scenarios for these
         environments have been described in several documents; in
         particular, we refer the reader to <xref
-        target='I-D.petrescu-its-scenarios-reqs'/>, about scenarios
-        and requirements for IP in Intelligent Transportation Systems.
+        target='I-D.ietf-ipwave-vehicular-networking-survey'/>, that
+        lists some scenarios and requirements for IP in Intelligent
+        Transportation Systems.
       </t>
       <t>
 	The link model is the following: STA --- 802.11-OCB --- STA.
@@ -465,7 +473,7 @@
           Ethernet packets.  As with all 802.11 frames, an Ethernet
           adaptation layer is used with 802.11-OCB as well.  This
           Ethernet Adaptation Layer performing 802.11-to-Ethernet is
-          described in <xref target='aal'/>.  The Ethernet Type code
+          described in <xref target='eal'/>.  The Ethernet Type code
           (EtherType) for IPv6 is 0x86DD (hexadecimal 86DD, or
           otherwise #86DD).
         </t>
@@ -487,7 +495,7 @@
 	</t>
 
         <section title='Ethernet Adaptation Layer'
-                 anchor='aal'>
+                 anchor='eal'>
           <t>
             An 'adaptation' layer is inserted between a MAC layer and
             the Networking layer.  This is used to transform some
@@ -502,8 +510,14 @@
             Header and produces an Ethernet II Header.  At sending,
             the reverse operation is performed.
           </t>
+	  <t>
+	    The operation of the Ethernet Adaptation Layer is depicted
+	    by the double arrow in <xref target='fig:eal'/>.
+	  </t>
           <t> 
-            <figure align="center">
+            <figure anchor="fig:eal" 
+		    title='Operation of the Ethernet Adaptation Layer'
+		    align="center">
               <artwork align="center">
                 <![CDATA[
  +--------------------+------------+-------------+---------+-----------+
@@ -545,10 +559,12 @@
           <t>
             In OCB mode, IPv6 packets MAY be transmitted either as
             "IEEE 802.11 Data" or alternatively as "IEEE 802.11 QoS
-            Data", as illustrated in the figure below.  
+            Data", as illustrated in <xref target='fig:QoS-or-no'/>.
           </t>
           <t> 
-            <figure align="center">
+            <figure anchor='fig:QoS-or-no' 
+		    title='802.11 Data Header or 802.11 QoS Data Header'
+		    align="center">
               <artwork align="center">
                 <![CDATA[
 +--------------------+-------------+-------------+---------+-----------+
@@ -581,22 +597,26 @@ or
             specific to OCB mode.
           </t>
 	  <t>
-	    The placement of IPv6 networking layer on Ethernet Adaptation
-	    Layer is illustrated below:
+	    The placement of IPv6 networking layer on Ethernet
+	    Adaptation Layer is illustrated in <xref
+	    target='fig:eal-layer'/>.
 	  </t>
 	  <t> 
-            <figure align="center">
+            <figure anchor='fig:eal-layer'
+		    title='Ethernet Adaptation Layer 
+			   stacked with other layers' 
+		    align="center">
               <artwork align="center">
 		<![CDATA[
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |                 IPv6                  |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |       Ethernet Adaptation Layer       |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |             802.11 WiFi MAC           |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 |             802.11 WiFi PHY           |
-	 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                 IPv6                  |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       Ethernet Adaptation Layer       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|             802.11 WiFi MAC           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|             802.11 WiFi PHY           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 		]]>
               </artwork>
             </figure>
@@ -647,13 +667,13 @@ or
         </section>
 
         <section title="Address Mapping -- Multicast">
-          <t>          
-            A Group ID named TBD, of length 112bits is requested to
-            IANA; this Group ID signifies "All 80211OCB Interfaces
-            Address".  Only the least 32 significant bits of this "All
-            80211OCB Interfaces Address" will be mapped to and from a
-            MAC multicast address.
-          </t>
+	  <t>
+	    The multicast address mapping is performed according to
+	    the method specified in section 7 of <xref
+	    target='RFC2464'/>.  The meaning of the value "3333"
+	    mentioned in that section 7 of <xref target='RFC2464'/> is
+	    defined in section 2.3.1 of <xref target='RFC7042'/>.
+	  </t>
           <t>
             Transmitting IPv6 packets to multicast destinations over
             802.11 links proved to have some performance issues <xref
@@ -687,8 +707,8 @@ or
           As with all Ethernet and 802.11 interface identifiers (<xref
           target='RFC7721'/>), the identifier of an 802.11-OCB
           interface may involve privacy, MAC address spoofing and IP
-          address hijacking risks.  A vehicle embarking an On-Board
-          Unit whose egress interface is 802.11-OCB may expose itself
+          address hijacking risks.  A vehicle embarking an OBU or an
+          OBRU whose egress interface is 802.11-OCB may expose itself
           to eavesdropping and subsequent correlation of data; this
           may reveal data considered private by the vehicle owner;
           there is a risk of being tracked; see the privacy
@@ -804,8 +824,7 @@ or
 
     <section anchor="IANA" title="IANA Considerations">
       <t>
-        A Group ID named TBD, of length 112bits is requested to IANA;
-        this Group ID signifies "All 80211OCB Interfaces Address".
+	No request to IANA.
       </t>
     </section>
 
@@ -932,6 +951,9 @@ or
       <!--   include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6775" -->
       <!-- ?> -->
       <?rfc
+        include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7042"
+      ?>
+      <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7136"
       ?>
       <?rfc
@@ -1049,7 +1071,7 @@ or
 	    ETSI TS 102 940 V1.2.1 (2016-11), ETSI Technical
 	    Specification, Intelligent Transport Systems (ITS);
 	    Security; ITS communications security architecture and
-	    security management, November 2016.  Dowloaded on
+	    security management, November 2016.  Downloaded on
 	    September 9th, 2017, freely available from ETSI website at
 	    URL
 	    http://www.etsi.org/deliver/etsi_ts/102900_102999/102940/01.02.01_60/ts_102940v010201p.pdf
@@ -1144,10 +1166,6 @@ or
         include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-ipwave-vehicular-networking-survey"
       ?>
       
-      <?rfc
-	include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.petrescu-its-scenarios-reqs"
-      ?>
-
       <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.hinden-6man-rfc2464bis" ?>
 
       <?rfc
@@ -1168,10 +1186,81 @@ or
         draft-ietf-ipwave-ipv6-over-80211ocb-10
         <list style='symbols'>
 	  <t>
-	    Minor typos.
+	    Removed text requesting a new Group ID for multicast for
+	    OCB.
 	  </t>
 	  <t>
-	    Replaced "section Section" with "section" throughout.
+	    Added a clarification of the meaning of value "3333" in
+	    the section Address Mapping -- Multicast.
+	  </t>
+	  <t>
+	    Added note clarifying that in Europe the regional
+	    authority is not ETSI, but "ECC/CEPT based on ENs from
+	    ETSI".
+	  </t>
+	  <t>
+	    Added note stating that the manner in which two STAtions
+	    set their communication channel is not described in this
+	    document.
+	  </t>
+	  <t>
+	    Added a time qualifier to state that the "each node is
+	    represented uniquely at a certain point in time."
+	  </t>
+	  <t>
+	    Removed text "This section may need to be moved" (the
+	    "Reliability Requirements" section).  This section stays
+	    there at this time.
+	  </t>
+	  <t>
+	    In the term definition "802.11-OCB" added a note stating
+	    that "any implementation should comply with standards and
+	    regulations set in the different countries for using that
+	    frequency band."
+	  </t>
+	  <t>
+	    In the RSU term definition, added a sentence explaining
+	    the difference between RSU and RSRU: in terms of number of
+	    interfaces and IP forwarding.
+	  </t>
+	  <t>
+	    Replaced "with at least two IP interfaces" with "with at
+	    least two real or virtual IP interfaces".
+	  </t>
+	  <t>
+	    Added a term in the Terminology for "OBU".  However the
+	    definition is left empty, as this term is defined outside
+	    IETF.
+	  </t>
+	  <t>
+	    Added a clarification that it is an OBU or an OBRU in this
+	    phrase "A vehicle embarking an OBU or an OBRU".
+	  </t>
+	  <t>
+	    Checked the entire document for a consistent use of terms
+	    OBU and OBRU.
+	  </t>
+	  <t>
+	    Added note saying that "'p' is a letter identifying the
+	    Ammendment".
+	  </t>
+	  <t>
+	    Substituted lower case for capitals SHALL or MUST in the
+	    Appendices.
+	  </t>
+	  <t>
+	    Added reference to RFC7042, helpful in the 3333
+	    explanation.  Removed reference to individual submission
+	    draft-petrescu-its-scenario-reqs and added reference to
+	    draft-ietf-ipwave-vehicular-networking-survey.
+	  </t>
+	  <t>
+	    Added figure captions, figure numbers, and references to
+	    figure numbers instead of 'below'.  Replaced "section
+	    Section" with "section" throughout.
+	  </t>
+	  <t>
+	    Minor typographical errors.
 	  </t>
         </list>
       </t> 
@@ -1533,10 +1622,12 @@ or
         can directly communicate with each other without involving
         authentication or association procedures.  At link layer, it
         is necessary to set the same channel number (or frequency) on
-        two stations that need to communicate with each other.
-        Stations STA1 and STA2 can exchange IP packets if they are set
-        on the same channel.  At IP layer, they then discover each
-        other by using the IPv6 Neighbor Discovery protocol.
+        two stations that need to communicate with each other.  The
+        manner in which stations set their channel number is not
+        specified in this document.  Stations STA1 and STA2 can
+        exchange IP packets if they are set on the same channel.  At
+        IP layer, they then discover each other by using the IPv6
+        Neighbor Discovery protocol.
       </t>
       <t>
 	Briefly, the IEEE 802.11-OCB mode has the following
@@ -1560,17 +1651,21 @@ or
 	resolved by the MAC CDMA function.
       </t>
       <t>
-        The following message exchange diagram illustrates a
-        comparison between traditional 802.11 and 802.11 in OCB mode.
-        The 'Data' messages can be IP packets such as HTTP or others.
-        Other 802.11 management and control frames (non IP) may be
-        transmitted, as specified in the 802.11 standard.  For
-        information, the names of these messages as currently
-        specified by the 802.11 standard are listed in <xref
+        The message exchange diagram in <xref target='fig:mess-exch'/>
+        illustrates a comparison between traditional 802.11 and 802.11
+        in OCB mode.  The 'Data' messages can be IP packets such as
+        HTTP or others.  Other 802.11 management and control frames
+        (non IP) may be transmitted, as specified in the 802.11
+        standard.  For information, the names of these messages as
+        currently specified by the 802.11 standard are listed in <xref
         target="OCB-messages"/>.
       </t>
       <t>
-        <figure align="center">
+
+        <figure title='Difference between messages exchanged 
+			on 802.11 (left) and 802.11-OCB (right)'
+		anchor='fig:mess-exch'
+		align="center">	  
           <artwork align="center">
             <![CDATA[
      STA                    AP              STA1                   STA2
@@ -1589,7 +1684,7 @@ or
      |<------ Data -------->|               |                      |
      |<------ Data -------->|               |<------ Data -------->|
 
-(a) 802.11 Infrastructure mode         (b) 802.11-OCB mode
+      (i) 802.11 Infrastructure mode         (ii) 802.11-OCB mode
             ]]>
           </artwork>
         </figure>
@@ -1617,12 +1712,13 @@ or
         802.11a/b/g/n), but which needs to cope with the high mobility
         factor inherent in scenarios of communications between moving
         vehicles, and between vehicles and fixed infrastructure
-        deployed along roads.  While 'p' is a letter just like 'a, b,
-        g' and 'n' are, 'p' is concerned more with MAC modifications,
-        and a little with PHY modifications; the others are mainly
-        about PHY modifications.  It is possible in practice to
-        combine a 'p' MAC with an 'a' PHY by operating outside the
-        context of a BSS with OFDM at 5.4GHz and 5.9GHz.
+        deployed along roads.  While 'p' is a letter identifying the
+        Ammendment, just like 'a, b, g' and 'n' are, 'p' is concerned
+        more with MAC modifications, and a little with PHY
+        modifications; the others are mainly about PHY modifications.
+        It is possible in practice to combine a 'p' MAC with an 'a'
+        PHY by operating outside the context of a BSS with OFDM at
+        5.4GHz and 5.9GHz.
       </t>
 
       <t>
@@ -1696,25 +1792,25 @@ or
             layer, with almost no impact on the interface between MAC
             and IP.  However, it is worth considering that the
             frequency range is regulated by a regional authority
-            (ARCEP, ETSI, FCC, etc.); as part of the regulation
-            process, specific applications are associated with
-            specific frequency ranges.  In the case of 802.11-OCB, the
-            regulator associates a set of frequency ranges, or slots
-            within a band, to the use of applications of vehicular
-            communications, in a band known as "5.9GHz".  The 5.9GHz
-            band is different from the 2.4GHz and 5GHz bands used by
-            Wireless LAN.  However, as with Wireless LAN, the
-            operation of 802.11-OCB in "5.9GHz" bands is exempt from
-            owning a license in EU (in US the 5.9GHz is a licensed
-            band of spectrum; for the fixed infrastructure an explicit
-            FCC authorization is required; for an onboard device a
-            'licensed-by-rule' concept applies: rule certification
-            conformity is required.) Technical conditions are
-            different than those of the bands "2.4GHz" or "5GHz".  The
-            allowed power levels, and implicitly the maximum allowed
-            distance between vehicles, is of 33dBm for 802.11-OCB (in
-            Europe), compared to 20 dBm for Wireless LAN
-            802.11a/b/g/n; this leads to a maximum distance of
+            (ARCEP, ECC/CEPT based on ENs from ETSI, FCC, etc.); as
+            part of the regulation process, specific applications are
+            associated with specific frequency ranges.  In the case of
+            802.11-OCB, the regulator associates a set of frequency
+            ranges, or slots within a band, to the use of applications
+            of vehicular communications, in a band known as "5.9GHz".
+            The 5.9GHz band is different from the 2.4GHz and 5GHz
+            bands used by Wireless LAN.  However, as with Wireless
+            LAN, the operation of 802.11-OCB in "5.9GHz" bands is
+            exempt from owning a license in EU (in US the 5.9GHz is a
+            licensed band of spectrum; for the fixed infrastructure an
+            explicit FCC authorization is required; for an on-board
+            device a 'licensed-by-rule' concept applies: rule
+            certification conformity is required.) Technical
+            conditions are different than those of the bands "2.4GHz"
+            or "5GHz".  The allowed power levels, and implicitly the
+            maximum allowed distance between vehicles, is of 33dBm for
+            802.11-OCB (in Europe), compared to 20 dBm for Wireless
+            LAN 802.11a/b/g/n; this leads to a maximum distance of
             approximately 1km, compared to approximately 50m.
             Additionally, specific conditions related to congestion
             avoidance, jamming avoidance, and radar detection are
@@ -1852,20 +1948,22 @@ or
         </list>
       </t>
     </section>
-    <section title='EPD'
+    <section title='EtherType Protocol Discrimination (EPD)'
 	     anchor='epd'>
       <t>
         A more theoretical and detailed view of layer stacking, and
         interfaces between the IP layer and 802.11-OCB layers, is
-        illustrated below.  The IP layer operates on top of the
-        EtherType Protocol Discrimination (EPD); this Discrimination
-        layer is described in IEEE Std 802.3-2012; the interface
-        between IPv6 and EPD is the LLC_SAP (Link Layer Control
-        Service Access Point).
+        illustrated in <xref target='fig:epd'/>.  The IP layer
+        operates on top of the EtherType Protocol Discrimination
+        (EPD); this Discrimination layer is described in IEEE Std
+        802.3-2012; the interface between IPv6 and EPD is the LLC_SAP
+        (Link Layer Control Service Access Point).
       </t>
 
       <t> 
-        <figure align="center">
+        <figure align="center"
+		title='EtherType Protocol Discrimination'
+		anchor='fig:epd'>
           <artwork align="center">
             <![CDATA[
  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1906,11 +2004,11 @@ or
       <section title="Vehicle ID" anchor="VID" >
         <t>
           In automotive networks it is required that each node is
-          represented uniquely.  Accordingly, a vehicle must be
-          identified by at least one unique identifier.  The current
-          specification at ETSI and at IEEE 1609 identifies a vehicle
-          by its MAC address, which is obtained from the 802.11-OCB
-          Network Interface Card (NIC).
+          represented uniquely at a certain point in time.
+          Accordingly, a vehicle must be identified by at least one
+          unique identifier.  The current specification at ETSI and at
+          IEEE 1609 identifies a vehicle by its MAC address, which is
+          obtained from the 802.11-OCB Network Interface Card (NIC).
         </t>
         <t>
 	  In case multiple 802.11-OCB NICs are present in one car,
@@ -1927,16 +2025,12 @@ or
       </section>
 
       <section title="Reliability Requirements" anchor="link" >
-	<t>
-	  This section may need to be moved out into a separate
-	  requirements document.
-	</t>
         <t>
           The dynamically changing topology, short connectivity,
           mobile transmitter and receivers, different antenna heights,
           and many-to-many communication types, make IEEE 802.11-OCB
           links significantly different from other IEEE 802.11 links.
-          Any IPv6 mechanism operating on IEEE 802.11-OCB link MUST
+          Any IPv6 mechanism operating on IEEE 802.11-OCB link must
           support strong link asymmetry, spatio-temporal link quality,
           fast address resolution and transmission.
         </t>
@@ -1945,35 +2039,35 @@ or
           to operate outside of the context of a Basic Service Set.
           This means in practice that IEEE 802.11-OCB does not rely on
           a Base Station for all Basic Service Set management. In
-          particular, IEEE 802.11-OCB SHALL NOT use beacons.  Any IPv6
+          particular, IEEE 802.11-OCB shall not use beacons.  Any IPv6
           mechanism requiring L2 services from IEEE 802.11 beacons
-          MUST support an alternative service.
+          must support an alternative service.
         </t>
         <t> 
           Channel scanning being disabled, IPv6 over IEEE 802.11-OCB
-          MUST implement a mechanism for transmitter and receiver to
+          must implement a mechanism for transmitter and receiver to
           converge to a common channel.
         </t> 
         <t> 
           Authentication not being possible, IPv6 over IEEE 802.11-OCB
-          MUST implement an distributed mechanism to authenticate
+          must implement an distributed mechanism to authenticate
           transmitters and receivers without the support of a DHCP
           server.
         </t>
         <t> 
           Time synchronization not being available, IPv6 over IEEE
-          802.11-OCB MUST implement a higher layer mechanism for time
+          802.11-OCB must implement a higher layer mechanism for time
           synchronization between transmitters and receivers without
           the support of a NTP server.
         </t>
         <t> 
           The IEEE 802.11-OCB link being asymmetric, IPv6 over IEEE
-          802.11-OCB MUST disable management mechanisms requesting
+          802.11-OCB must disable management mechanisms requesting
           acknowledgements or replies.
         </t>
         <t> 
           The IEEE 802.11-OCB link having a short duration time, IPv6
-          over IEEE 802.11-OCB SHOULD implement fast IPv6 mobility
+          over IEEE 802.11-OCB should implement fast IPv6 mobility
           management mechanisms.
         </t>
       </section>
@@ -2007,7 +2101,7 @@ or
         <t>
           Certain privacy requirements imply that if these multiple
           interfaces are represented by many network interface, a
-          single renumbering event SHALL cause renumbering of all
+          single renumbering event shall cause renumbering of all
           these interfaces. If one MAC changed and another stayed
           constant, external observers would be able to correlate old
           and new values, and the privacy benefits of randomization
@@ -2016,16 +2110,16 @@ or
         <t> 
           The privacy requirements of Non IP safety-critical
           communications imply that if a change of pseudonyme occurs,
-          renumbering of all other interfaces SHALL also occur.
+          renumbering of all other interfaces shall also occur.
         </t>        
       </section>
 
       <section title="MAC Address Generation" >
         <t>
           When designing the IPv6 over 802.11-OCB address mapping, we
-          will assume that the MAC Addresses will change during well
-          defined "renumbering events".  The 48 bits randomized MAC
-          addresses will have the following characteristics:
+          assume that the MAC Addresses change during well defined
+          "renumbering events".  The 48 bits randomized MAC addresses
+          will have the following characteristics:
         </t>
         <t>
           <list style="symbols" >
@@ -2089,17 +2183,19 @@ or
       </t>
       <t>
         We describe an experiment of capturing an IPv6 packet on an
-        802.11-OCB link.  In this experiment, the packet is an IPv6
-        Router Advertisement.  This packet is emitted by a Router on
-        its 802.11-OCB interface.  The packet is captured on the Host,
-        using a network protocol analyzer (e.g. Wireshark); the
-        capture is performed in two different modes: direct mode and
-        'monitor' mode.  The topology used during the capture is
-        depicted below.
+        802.11-OCB link.  In topology depicted in <xref
+        target='topo'/>, the packet is an IPv6 Router Advertisement.
+        This packet is emitted by a Router on its 802.11-OCB
+        interface.  The packet is captured on the Host, using a
+        network protocol analyzer (e.g. Wireshark); the capture is
+        performed in two different modes: direct mode and 'monitor'
+        mode.  The topology used during the capture is depicted below.
       </t>
 
       <t> 
-        <figure align="center">
+        <figure align="center"
+		title='Topology for capturing IP packets on 802.11-OCB'
+		anchor='topo'>
           <artwork align="center">
             <![CDATA[
      +--------+                                +-------+
@@ -2169,18 +2265,18 @@ IEEE 802.11 Data Header
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ... Receiver Address           |      Transmitter Address...    
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-... Transmitter Address                                        |
+ ... Transmitter Address                                        |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |                            BSS Id...                           
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-... BSS Id                     |  Frag Number and Seq Number   |
+ ... BSS Id                     |  Frag Number and Seq Number   |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+    
 
 Logical-Link Control Header
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |      DSAP   |I|     SSAP    |C| Control field | Org. code...   
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-... Organizational Code        |             Type              |
+ ... Organizational Code        |             Type              |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 IPv6 Base Header
