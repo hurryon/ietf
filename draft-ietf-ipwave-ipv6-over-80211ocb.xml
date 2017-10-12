@@ -968,9 +968,6 @@ or
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8200"
       ?>       
-      <?rfc
-        include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ieee-802-11"
-      ?>
     </references>
 
     <references title="Informative References">
@@ -1165,6 +1162,9 @@ or
       <?rfc
         include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-ipwave-vehicular-networking-survey"
       ?>
+      <?rfc
+        include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tsvwg-ieee-802-11"
+      ?>
       
       <?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.hinden-6man-rfc2464bis" ?>
 
@@ -1180,6 +1180,16 @@ or
       <t>
         The changes are listed in reverse chronological order, most
         recent changes appearing at the top of the list.
+      </t>
+      <t>
+        From draft-ietf-ipwave-ipv6-over-80211ocb-09 to
+        draft-ietf-ipwave-ipv6-over-80211ocb-10
+        <list style='symbols'>
+	  <t>
+	    Moved the draft tsvwg-ieee-802-11 to Informative
+	    References.
+	  </t>
+	</list>
       </t>
       <t>
         From draft-ietf-ipwave-ipv6-over-80211ocb-09 to
