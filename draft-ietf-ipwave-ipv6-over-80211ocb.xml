@@ -421,11 +421,9 @@
 	(vehicular networks) brings in new perspectives.
       </t>
       <t>
-	The 802.11-OCB links form and terminate; nodes connected to
-	these links peer, and discover each other; the nodes are
-	mobile.  However, the precise description of how links
-	discover each other, peer and manage mobility is not given in
-	this document.
+	The mechanisms for forming and terminating, discovering,
+	peering and mobility management for 802.11-OCB links are not
+	described in this document.
       </t>
     </section>
 
@@ -1174,7 +1172,6 @@ or
       
     </references>
 
-
     <section anchor='changelog'
              title='ChangeLog'>
       <t>
@@ -1182,9 +1179,13 @@ or
         recent changes appearing at the top of the list.
       </t>
       <t>
-        From draft-ietf-ipwave-ipv6-over-80211ocb-09 to
-        draft-ietf-ipwave-ipv6-over-80211ocb-10
+        From draft-ietf-ipwave-ipv6-over-80211ocb-10 to
+        draft-ietf-ipwave-ipv6-over-80211ocb-11
         <list style='symbols'>
+	  <t>
+	    Shortened the paragraph on forming/terminating 802.11-OCB
+	    links.
+	  </t>
 	  <t>
 	    Moved the draft tsvwg-ieee-802-11 to Informative
 	    References.
