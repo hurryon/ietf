@@ -11,7 +11,7 @@
 <?rfc iprnotified="no" ?>
 
 <rfc category="std"
-     docName="draft-ietf-ipwave-ipv6-over-80211ocb-11.txt"
+     docName="draft-ietf-ipwave-ipv6-over-80211ocb-12.txt"
      ipr="trust200902">
 
   <!-- category values: std, bcp, info, exp, and historic ipr values:
@@ -864,9 +864,9 @@ or
         Housley, Rex Buddenberg, Erik Nordmark, Bob Moskowitz, Andrew
         (Dryden?), Georg Mayer, Dorothy Stanley, Sandra Cespedes,
         Mariano Falcitelli, Sri Gundavelli, Abdussalam Baryun,
-        Margaret Cullen and William Whyte.  Their valuable comments
-        clarified particular issues and generally helped to improve
-        the document.
+        Margaret Cullen, Erik Kline and William Whyte.  Their valuable
+        comments clarified particular issues and generally helped to
+        improve the document.
       </t>
       <t>
         Pierre Pfister, Rostislav Lisovy, and others, wrote 802.11-OCB
@@ -1177,6 +1177,17 @@ or
       <t>
         The changes are listed in reverse chronological order, most
         recent changes appearing at the top of the list.
+      </t>
+      <t>
+        From draft-ietf-ipwave-ipv6-over-80211ocb-11 to
+        draft-ietf-ipwave-ipv6-over-80211ocb-12
+        <list style='symbols'>
+	  <t>
+	    Improved the appendix about "MAC Address Generation" by
+	    expressing the technique to be an optional suggestion, not
+	    a mandatory mechanism.
+	  </t>
+	</list>
       </t>
       <t>
         From draft-ietf-ipwave-ipv6-over-80211ocb-10 to
@@ -2127,10 +2138,9 @@ or
 
       <section title="MAC Address Generation" >
         <t>
-          When designing the IPv6 over 802.11-OCB address mapping, we
-          assume that the MAC Addresses change during well defined
-          "renumbering events".  The 48 bits randomized MAC addresses
-          will have the following characteristics:
+	  In 802.11-OCB networks, the MAC addresses may change during
+	  well defined renumbering events.  A 'randomized' MAC address
+	  has the following characteristics:
         </t>
         <t>
           <list style="symbols" >
@@ -2141,18 +2151,19 @@ or
               Bit "Unicast/Multicast" set to "Unicast".
             </t>
             <t>
-              46 remaining bits set to a random value, using a random
-              number generator that meets the requirements of <xref
-              target="RFC4086" />.
+              The 46 remaining bits are set to a random value, using a
+              random number generator that meets the requirements of
+              <xref target="RFC4086" />.
             </t>
           </list>
         </t>
         <t>
-          The way to meet the randomization requirements is to retain
-          46 bits from the output of a strong hash function, such as
-          SHA256, taking as input a 256 bit local secret, the
-          "nominal" MAC Address of the interface, and a representation
-          of the date and time of the renumbering event.
+          To meet the randomization requirements for the 46 remaining
+          bits, a hash function may be used. For example, the SHA256
+          hash function may be used with input a 256 bit local secret,
+          the "nominal" MAC Address of the interface, and a
+          representation of the date and time of the renumbering
+          event.
         </t>
       </section>
     </section>
